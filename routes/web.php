@@ -6,7 +6,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontsite\LandingController;
 use App\Http\Controllers\Frontsite\AppointmentController;
 use App\Http\Controllers\Frontsite\PaymentController;
-// use App\Http\Controllers\Frontsite\RegisterController;
+use App\Http\Controllers\Frontsite\RegisterController;
+
+// backsite
+use App\Http\Controllers\Backsite\DashboardController;
+// use App\Http\Controllers\Backsite\PermissionController;
+// use App\Http\Controllers\Backsite\RoleController;
+// use App\Http\Controllers\Backsite\UserController;
+// use App\Http\Controllers\Backsite\TypeUserController;
+// use App\Http\Controllers\Backsite\SpecialistController;
+// use App\Http\Controllers\Backsite\ConfigPaymentController;
+// use App\Http\Controllers\Backsite\ConsultationController;
+// use App\Http\Controllers\Backsite\DoctorController;
+// use App\Http\Controllers\Backsite\HospitalPatientController;
+// use App\Http\Controllers\Backsite\ReportAppointmentController;
+// use App\Http\Controllers\Backsite\ReportTransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +39,15 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     Route::resource('appointment', AppointmentController::class);
 
+    Route::get('payment/success', [PaymentController::class, 'success'])->name('payment.success');
     Route::resource('payment', PaymentController::class);
     
+    Route::resource('register_success', RegisterController::class);
 });
 
 Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['auth:sanctum', 'verified']], function () {
 
-    return view('dashboard');
+    Route::resource('dashboard', DashboardController::class);
+    
 
 });

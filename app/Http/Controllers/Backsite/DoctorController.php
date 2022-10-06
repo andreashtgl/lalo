@@ -1,40 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Frontsite;
+namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
-
-// use library here
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\Response;
 
-// use everything here
-// use Gate;
-use Auth;
-
-// use model here
-use App\Models\User;
-use App\Models\Operational\Doctor;
-use App\Models\Operational\Appointment;
-use App\Models\Operational\Transaction;
-use App\Models\MasterData\Consultation;
-use App\Models\MasterData\Specialist;
-use App\Models\MasterData\ConfigPayment;
-
-class PaymentController extends Controller
+class DoctorController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +14,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('pages.frontsite.payment.index');
+        //
     }
 
     /**
@@ -52,7 +24,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return abort(404);
+        //
     }
 
     /**
@@ -63,7 +35,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        return abort(404);
+        //
     }
 
     /**
@@ -74,7 +46,7 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        return abort(404);
+        //
     }
 
     /**
@@ -85,7 +57,7 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        return abort(404);
+        //
     }
 
     /**
@@ -97,7 +69,7 @@ class PaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return abort(404);
+        //
     }
 
     /**
@@ -108,11 +80,6 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        return abort(404);
-    }
-
-    public function success()
-    {
-        return view('pages.frontsite.success.payment-success');
+        //
     }
 }

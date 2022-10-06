@@ -158,7 +158,7 @@
                             tabindex="-1"
                         >
                             <a
-                                href="#"
+                                href="{{ route('backsite.dashboard.index') }}"
                                 class="block px-4 py-2 text-sm text-[#1E2B4F] hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"

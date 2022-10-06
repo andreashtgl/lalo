@@ -1,28 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Frontsite;
+namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 // use library here
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 // use everything here
-// use Gate;
+use Gate;
 use Auth;
 
-// use model here
-use App\Models\User;
-use App\Models\Operational\Doctor;
-use App\Models\Operational\Appointment;
-use App\Models\Operational\Transaction;
-use App\Models\MasterData\Consultation;
-use App\Models\MasterData\Specialist;
-use App\Models\MasterData\ConfigPayment;
-
-class PaymentController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -34,7 +24,6 @@ class PaymentController extends Controller
         $this->middleware('auth');
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +31,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('pages.frontsite.payment.index');
+        return view('pages.backsite.dashboard.index');
     }
 
     /**
@@ -52,7 +41,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return abort(404);
+        return abort();
     }
 
     /**
@@ -63,7 +52,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        return abort(404);
+        return abort();
     }
 
     /**
@@ -74,7 +63,7 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        return abort(404);
+        return abort();
     }
 
     /**
@@ -85,7 +74,7 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        return abort(404);
+        return abort();
     }
 
     /**
@@ -97,7 +86,7 @@ class PaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return abort(404);
+        return abort();
     }
 
     /**
@@ -108,11 +97,6 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        return abort(404);
-    }
-
-    public function success()
-    {
-        return view('pages.frontsite.success.payment-success');
+        return abort();
     }
 }

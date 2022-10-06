@@ -332,7 +332,7 @@
               button when payment is filled.
             -->
             <a
-              href="booking-success.html"
+              href="{{ route('payment.success') }}"
               class="bg-[#0D63F3] text-white px-10 py-3 rounded-full text-center"
               x-show="payment.length"
             >

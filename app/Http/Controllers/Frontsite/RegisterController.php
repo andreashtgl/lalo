@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Frontsite;
 use App\Http\Controllers\Controller;
 
 // use library here
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\DB;
 
 // use everything here
 // use Gate;
@@ -15,14 +15,10 @@ use Auth;
 
 // use model here
 use App\Models\User;
-use App\Models\Operational\Doctor;
-use App\Models\Operational\Appointment;
-use App\Models\Operational\Transaction;
-use App\Models\MasterData\Consultation;
-use App\Models\MasterData\Specialist;
-use App\Models\MasterData\ConfigPayment;
 
-class PaymentController extends Controller
+// thirdparty package
+
+class RegisterController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -34,7 +30,6 @@ class PaymentController extends Controller
         $this->middleware('auth');
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +37,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('pages.frontsite.payment.index');
+        return view('pages.frontsite.success.signup-success');
     }
 
     /**
@@ -109,10 +104,5 @@ class PaymentController extends Controller
     public function destroy($id)
     {
         return abort(404);
-    }
-
-    public function success()
-    {
-        return view('pages.frontsite.success.payment-success');
     }
 }
