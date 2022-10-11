@@ -39,7 +39,7 @@ class ConfigPaymentController extends Controller
      */
     public function index()
     {
-        // abort_if(Gate::denies('config_payment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('config_payment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $config_payment = ConfigPayment::all();
 
@@ -84,9 +84,9 @@ class ConfigPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ConfigPayment $config_payment)
     {
-        // abort_if(Gate::denies('config_payment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('config_payment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('pages.backsite.master-data.config-payment.edit', compact('config_payment'));
     }
@@ -98,7 +98,7 @@ class ConfigPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateConfigPaymentRequest $request, ConfigPayment $config_payment)
     {
         // get all request from frontsite
         $data = $request->all();

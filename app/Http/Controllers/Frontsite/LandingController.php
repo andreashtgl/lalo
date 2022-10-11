@@ -14,6 +14,7 @@ use Auth;
 use App\Models\User;
 use App\Models\Operational\Doctor;
 use App\Models\MasterData\Specialist;
+use App\Models\MasterData\TypeUser;
 
 class LandingController extends Controller
 {
@@ -24,7 +25,11 @@ class LandingController extends Controller
      */
     public function index()
     {
-        return view('pages.frontsite.landing-page.index');
+        $specialist = Specialist::orderBy('name', 'desc')->limit(5)->get();
+        $doctor = Doctor::orderBy('created_at', 'desc')->limit(4)->get();
+        $type = TypeUser::all();
+
+        return view('pages.frontsite.landing-page.index', compact('doctor', 'specialist', 'type'));
     }
 
     /**

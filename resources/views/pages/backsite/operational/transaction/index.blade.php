@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 {{-- set title --}}
-@section('title', 'Config Payment')
+@section('title', 'Transaction')
 
 @section('content')
 
@@ -28,12 +28,12 @@
             {{-- breadcumb --}}
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">Config Payment</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">Transaction</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('backsite.dashboard.index') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Config Payment</li>
+                                <li class="breadcrumb-item active">Transaction</li>
                             </ol>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
             </div>
 
             {{-- table card --}}
-            @can('config_payment_table')
+            @can('transaction_table')
                 <div class="content-body">
                     <section id="table-home">
                         <!-- Zero configuration table -->
@@ -49,7 +49,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Config Payment List</h4>
+                                        <h4 class="card-title">Transaction List</h4>
                                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
@@ -68,32 +68,28 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Date</th>
-                                                            <th>Fee</th>
+                                                            <th>Doctor</th>
+                                                            <th>Patient</th>
+                                                            <th>Fee Doctor</th>
+                                                            <th>Fee Specialist</th>
+                                                            <th>Fee Hospital</th>
+                                                            <th>Sub total</th>
                                                             <th>Vat</th>
-                                                            <th style="text-align:center; width:150px;">Action</th>
+                                                            <th>Total</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse($config_payment as $key => $config_payment_item)
-                                                            <tr data-entry-id="{{ $config_payment_item->id }}">
-                                                                <td>{{ isset($config_payment_item->created_at) ? date("d/m/Y H:i:s",strtotime($config_payment_item->created_at)) : '' }}</td>
-                                                                <td>{{ 'IDR '.number_format($config_payment_item->fee) ?? '' }}</td>
-                                                                <td>{{ number_format($config_payment_item->vat).'%' ?? '' }}</td>
-                                                                <td class="text-center">
-
-                                                                    <div class="btn-group mr-1 mb-1">
-                                                                        <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
-                                                                        <div class="dropdown-menu">
-
-                                                                            @can('config_payment_edit')
-                                                                                <a class="dropdown-item" href="{{ route('backsite.config_payment.edit', $config_payment_item->id) }}">
-                                                                                    Edit
-                                                                                </a>
-                                                                            @endcan
-
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
+                                                        @forelse($transaction as $key => $transaction_item)
+                                                            <tr data-entry-id="{{ $transaction_item->id }}">
+                                                                <td>{{ isset($transaction_item->created_at) ? date("d/m/Y H:i:s",strtotime($transaction_item->created_at)) : '' }}</td>
+                                                                <td>{{ $transaction_item->appointment->doctor->name ?? '' }}</td>
+                                                                <td>{{ $transaction_item->appointment->user->name ?? '' }}</td>
+                                                                <td>{{ 'IDR '.number_format($transaction_item->fee_doctor) ?? '' }}</td>
+                                                                <td>{{ 'IDR '.number_format($transaction_item->fee_specialist) ?? '' }}</td>
+                                                                <td>{{ 'IDR '.number_format($transaction_item->fee_hospital) ?? '' }}</td>
+                                                                <td>{{ 'IDR '.number_format($transaction_item->sub_total) ?? '' }}</td>
+                                                                <td>{{ 'IDR '.number_format($transaction_item->vat) ?? '' }}</td>
+                                                                <td>{{ 'IDR '.number_format($transaction_item->total) ?? '' }}</td>
                                                             </tr>
                                                         @empty
                                                             {{-- not found --}}
@@ -102,9 +98,14 @@
                                                     <tfoot>
                                                         <tr>
                                                             <th>Date</th>
-                                                            <th>Fee</th>
+                                                            <th>Doctor</th>
+                                                            <th>Patient</th>
+                                                            <th>Fee Doctor</th>
+                                                            <th>Fee Specialist</th>
+                                                            <th>Fee Hospital</th>
+                                                            <th>Sub total</th>
                                                             <th>Vat</th>
-                                                            <th style="text-align:center; width:150px;">Action</th>
+                                                            <th>Total</th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>

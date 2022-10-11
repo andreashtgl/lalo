@@ -130,9 +130,15 @@
                                     <div class="text-base font-medium text-[#1E2B4F]">
                                         Hi, {{ Auth::user()->name }}
                                     </div>
-
+                                    {{-- <div class="text-sm text-[#AFAEC3]">Pasien</div> --}}
+                                    @forelse($type as $key => $types)
                                     {{-- this section must read from type user --}}
+                                    <div class="text-sm text-[#AFAEC3]">{{ $types->names ?? '' }}</div>
+                                    @empty
+
                                     <div class="text-sm text-[#AFAEC3]">Pasien</div>
+            
+                                    @endforelse
                                 </div>
                                 <img
                                 class="h-12 w-12 rounded-full ring-1 ring-offset-4 ring-[#0D63F3]"
