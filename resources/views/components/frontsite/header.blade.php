@@ -131,9 +131,9 @@
                                         Hi, {{ Auth::user()->name }}
                                     </div>
                                     {{-- <div class="text-sm text-[#AFAEC3]">Pasien</div> --}}
-                                    @forelse($type as $key => $types)
+                                    @forelse($type as $id => $types)
                                     {{-- this section must read from type user --}}
-                                    <div class="text-sm text-[#AFAEC3]">{{ $types->names ?? '' }}</div>
+                                    <div class="text-sm text-[#AFAEC3]">{{ $types->name ?? '' }}</div>
                                     @empty
 
                                     <div class="text-sm text-[#AFAEC3]">Pasien</div>
